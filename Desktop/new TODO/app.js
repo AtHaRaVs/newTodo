@@ -23,8 +23,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static("assets"));
 
-app.get("/", (req, res) => {
-  res.render("screens/home", { colors: colors });
+app.get("/todos", (req, res) => {
+  res.render("screens/home");
+});
+
+app.post("/todos", async (req, res) => {
+  console.log(req.body);
+  res.redirect("/todos");
 });
 
 app.listen("8000", () => {

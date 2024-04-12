@@ -21,12 +21,13 @@
     >
       Blitz Board
     </h1>
-    <form action="" class="h-25 p-5">
+    <form action="/todos" class="h-25 p-5" method="post">
       <div class="input-group mb-3">
         <span
           class="input-group-text p-3 border-0"
           id="todoText"
           style="
+            width: 10%;
             background-color: #0a0908;
             border-color: #f2f4f3;
             color: #f2f4f3;
@@ -35,13 +36,14 @@
         >
         <input
           type="text"
-          class="form-control border-1"
-          aria-label="todo"
-          aria-describedby="todoText"
+          name="todoText"
+          id="todoText"
           style="
+            width: 90%;
             background-color: #0a0908;
-            border-color: #f2f4f3;
+            border: 1px solid #f2f4f3;
             color: #f2f4f3;
+            padding: 10px;
           "
         />
       </div>
