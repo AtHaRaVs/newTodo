@@ -11,25 +11,25 @@ main().catch((err) => console.log(err));
 
 const seededTodos = [
   {
-    text: "complete homework",
+    todoText: "complete homework",
   },
   {
-    text: "complete leetcode",
+    todoText: "complete leetcode",
   },
   {
-    text: "complete youtube",
+    todoText: "complete youtube",
   },
   {
-    text: "complete todo",
+    todoText: "complete todo",
   },
   {
-    text: "complete studying",
+    todoText: "complete studying",
   },
   {
-    text: "complete kitchen",
+    todoText: "complete kitchen",
   },
   {
-    text: "complete spotify",
+    todoText: "complete spotify",
   },
 ];
 
@@ -40,3 +40,11 @@ Todo.insertMany(seededTodos)
   .catch((e) => {
     console.log(e);
   });
+
+// Todo.deleteMany({})
+//   .then((result) => {
+//     console.log(`${result.deletedCount} todos deleted successfully.`);
+//   })
+//   .catch((error) => {
+//     console.error("Error deleting todos:", error);
+//   });

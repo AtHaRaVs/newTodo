@@ -1,7 +1,17 @@
 <%- layout("layouts/boilerplate") %>
 <div class="container-fluid d-flex flex-row mt-5" style="height: 100vh">
   <div class="container w-25 h-75 d-flex flex-column border border-5">
-    <h1 class="text-center">Your Todo's</h1>
+    <h1 class="text-center mt-2 mb-1">Your Todo's</h1>
+    <hr>
+    <div class="container-fluid p-0">
+      <ul class="list-group list-group-flush" >
+      <% for(let todo of todos) { %>
+      <li class="list-group-item m-2" style="background-color: #f2f4f3;">
+        <input class="form-check-input me-1" type="checkbox" value="" id="<%= todo._id %>">
+        <label class="form-check-label" for="<%= todo._id %>"><%= todo.todoText %></label>
+        </li>
+      <% } %></div>
+    </ul>
   </div>
   <div
     class="container w-75 h-75 d-flex flex-column rounded-5 shadow-lg"

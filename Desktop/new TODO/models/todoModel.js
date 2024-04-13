@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const todoSchema = new Schema({
-  text: {
+  todoText: {
     type: String,
     require: true,
   },
