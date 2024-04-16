@@ -6,7 +6,6 @@ const methodOverride = require("method-override");
 const colors = require("./colours/colors");
 const mongoose = require("mongoose");
 const Todo = require("./models/todoModel");
-const TodoArray = [];
 
 async function main() {
   await mongoose.connect("mongodb://127.0.0.1:27017/Todo").then(() => {
@@ -22,16 +21,29 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-app.use(express.static("assets"));
+app.use(express.static("public"));
 
 app.get("/todos", async (req, res) => {
   const todos = await Todo.find({});
   res.render("screens/home", { todos });
 });
 
+app.get("/todos/:id", async (req, res) => {
+  const { id } = req.params;
+  const todo = await Todo.findById(id);
+  res.render("screens/show", { todo });
+});
+
 app.post("/todos", async (req, res) => {
-  console.log(req.body);
+  const newTodo = new Todo(req.body);
+  newTodo.save();
   res.redirect("/todos");
+});
+
+app.put("/todos/:id", async (req, res) => {
+  const { id } = req.params;
+  const todo = await Todo.findByIdAndUpdate(id, req.body);
+  res.redirect(`/todos`);
 });
 
 app.listen("8000", () => {
