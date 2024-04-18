@@ -4,7 +4,7 @@
   <div class="container-fluid w-25 h-75 d-flex flex-column border border-5 rounded-5 " style="background-color: #0a0908">
     <h1 class="text-center mt-2 mb-1" style="color: #f2f4f3;">Your Todo's</h1>
     <hr style="color: #f2f4f3;">
-    <div class="container-fluid p-0" style="overflow-y: auto; ">
+    <div class="container-fluid p-2 " style="overflow-y: auto; ">
       <style>
         .container-fluid::-webkit-scrollbar {
           display: none;
@@ -12,9 +12,9 @@
       </style>
       <ul class="list-group list-group-flush" >
       <% for(let todo of todos) { %>
-      <li class="list-group-item m-2" style="background-color: #0a0908; color: #f2f4f3;">
+      <li class="list-group-item m-2" style="background-color: #0a0908; color: #f2f4f3; display: flex; justify-content: space-between;">
         <input class="form-check-input me-1" type="checkbox" value="" id="<%= todo._id %>">
-        <label class="form-check-label" for="<%= todo._id %>"><%= todo.todoText %></label>
+        <label class="form-check-label ms-2" for="<%= todo._id %>" style="flex-grow: 1;" ><%= todo.todoText %></label>
         <a href="todos/<%= todo._id %>">
           <span class="material-symbols-outlined">
             edit
