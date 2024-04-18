@@ -1,8 +1,51 @@
 <%- layout("layouts/boilerplate") %>
 
-<div class="container-fluid  d-flex flex-row mt-5" style="height: 100vh;">
-  <div class="container-fluid w-25 h-75 d-flex flex-column border border-5 rounded-5 " style="background-color: #0a0908">
-    <h1 class="text-center mt-2 mb-1" style="color: #f2f4f3;">Your Todo's</h1>
+<div class="container-fluid d-flex flex-row mt-5" style=" height: 100vh;">
+  <div
+    class="container w-25 h-75 d-flex flex-column rounded-5 m-5"
+    style="background-color: #f2f4f3"
+  >
+    <h1
+      class="display-1 h-75 text-center d-flex m-2"
+      style="
+        align-items: center;
+        justify-content: center;
+        color: #0a0908;
+        font-family: Pacifico, cursive;
+        font-weight: 400;
+        font-style: normal;
+      "
+    >
+      Blitz Board
+    </h1>
+    <div class="modal fade m-0 p-0" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">New Todo</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/todos" method="post">
+              <div class="mb-3">
+                <label for="todoText" class="form-label">Write Todo:</label>
+                <input type="text" name="todoText" id="todoText" class="form-control">
+              </div>
+              <button type="submit" class="btn btn-primary">ADD</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #fbca03; color: #aa0505">
+      Add a new Todo
+    </button>   
+  </div>
+  <div class="container-fluid w-75 h-75 d-flex flex-column border border-5 rounded-5 shadow m-5" style="background-color: #f2f4f3; ">
+    <h1 class="text-center mt-2 mb-1" style="color: #b97d10;">Your Todo's</h1>
     <hr style="color: #f2f4f3;">
     <div class="container-fluid p-2 " style="overflow-y: auto; ">
       <style>
@@ -12,58 +55,15 @@
       </style>
       <ul class="list-group list-group-flush" >
       <% for(let todo of todos) { %>
-      <li class="list-group-item m-2" style="background-color: #0a0908; color: #f2f4f3; display: flex; justify-content: space-between;">
+      <li class="list-group-item m-2" style="background-color: #f2f4f3; color: #4b0908; display: flex; justify-content: space-between;">
         <input class="form-check-input me-1" type="checkbox" value="" id="<%= todo._id %>">
         <label class="form-check-label ms-2" for="<%= todo._id %>" style="flex-grow: 1;" ><%= todo.todoText %></label>
         <a href="todos/<%= todo._id %>">
-          <span class="material-symbols-outlined">
+          <span class="material-symbols-outlined" style="color: #b97d10;">
             edit
             </span></a>
         </li>
       <% } %></div>
     </ul>
-  </div>
-  <div
-    class="container w-75 h-75 d-flex flex-column rounded-5 shadow-lg"
-    style="background-color: #0a0908"
-  >
-    <h1
-      class="display-1 h-75 text-center d-flex m-2"
-      style="
-        align-items: center;
-        justify-content: center;
-        color: #f2f4f3;
-        font-family: Edu QLD Beginner, cursive;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-      "
-    >
-      Blitz Board
-    </h1>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Add a new Todo
-    </button>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered " >
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">New Todo</h1>
-          </div>
-          <div class="modal-body">
-            <form action="/todos" method="post">
-              <div class="input-group mb-3">
-                <label for="todoText" class="m-2" >Write Todo: </label>
-                <input type="text" name="todoText" id="todoText" style="width: 100%;" class="m-2 p-3">
-              </div>
-              <button type="submit" class="btn btn-primary ms-2  ">ADD</button>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
