@@ -70,7 +70,20 @@
       <li class="list-group-item m-2" style="background-color: white; color: #4b0908; display: flex; justify-content: space-between;">
         <input class="form-check-input me-1" type="checkbox" value="" id="<%= todo._id %>">
         <label class="form-check-label ms-2" for="<%= todo._id %>" style="flex-grow: 1;" ><%= todo.todoText %></label>
-        <div class="me-1 " style="width: 20px; height: 20px;  "> <%= todo.priority %></div>
+
+        <style>
+          .priority-red{
+            background-color: red;
+          }
+          .priority-blue{
+            background-color: blue;
+          }
+          .priority-green{
+            background-color: green;
+          }
+        </style>
+
+        <div class="me-1 priority-<%= todo.priority %>" style="width: 20px; height: 20px; "></div>
         <a href="todos/<%= todo._id %>" class="ms-5">
           <span class="material-symbols-outlined" style="color: #b97d10;">
             edit
