@@ -6,6 +6,10 @@ const todoSchema = new Schema({
     type: String,
     required: true,
   },
+  priority: {
+    type: String,
+    requireed: true,
+  },
 });
 
 const Todo = mongoose.model("Todo", todoSchema);

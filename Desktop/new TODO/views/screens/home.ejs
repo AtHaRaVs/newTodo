@@ -3,7 +3,7 @@
 <div class="container-fluid d-flex flex-row mt-5" style=" height: 100vh;">
   <div
     class="container w-25 h-75 d-flex flex-column rounded-5 m-5"
-    style="background-color: #f2f4f3"
+    style="background-color: white"
   >
     <h1
       class="display-1 h-75 text-center d-flex m-2"
@@ -20,7 +20,7 @@
     </h1>
     <div class="modal fade m-0 p-0 " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
       <div class="modal-dialog modal-dialog-centered " >
-        <div class="modal-content shadow-lg">
+        <div class="modal-content shadow-lg ">
           <div class="modal-header">
             <h1 class="modal-title fs-5 p-2" id="exampleModalLabel">New Todo</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -31,6 +31,21 @@
                 <label for="todoText" class="form-label p-2">Write Todo:</label>
                 <input type="text" name="todoText" id="todoText" class="form-control p-3">
               </div>
+              <div class="mb-3">
+                <label for="priority" class="form-label p-2">Select Priority:</label>
+                <div id="priority" class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="priority" id="priorityHigh" value="red">
+                    <label class="form-check-label" for="priorityHigh">Critical</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="priority" id="priorityMedium" value="blue">
+                    <label class="form-check-label" for="priorityMedium">Essential</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="priority" id="priorityLow" value="green">
+                    <label class="form-check-label" for="priorityLow">Optional</label>
+                </div>
+            </div>
               <button type="submit" class="btn btn-primary mt-3 mb-3" style="width: 100%; background-color: #fbca03; border: none; color: #4b0908;">ADD</button>
             </form>
           </div>
@@ -41,9 +56,9 @@
       Add a new Todo
     </button>   
   </div>
-  <div class="container-fluid w-75 h-75 d-flex flex-column border border-5 rounded-5 shadow m-5" style="background-color: #f2f4f3; ">
+  <div class="container-fluid w-75 h-75 d-flex flex-column border border-5 rounded-5 shadow m-5" style="background-color: white; ">
     <h1 class="text-center mt-2 mb-1" style="color: #b97d10;">Your Todo's</h1>
-    <hr style="color: #f2f4f3;">
+    <hr style="color: white;">
     <div class="container-fluid p-2 " style="overflow-y: auto; ">
       <style>
         .container-fluid::-webkit-scrollbar {
@@ -52,10 +67,11 @@
       </style>
       <ul class="list-group list-group-flush" >
       <% for(let todo of todos) { %>
-      <li class="list-group-item m-2" style="background-color: #f2f4f3; color: #4b0908; display: flex; justify-content: space-between;">
+      <li class="list-group-item m-2" style="background-color: white; color: #4b0908; display: flex; justify-content: space-between;">
         <input class="form-check-input me-1" type="checkbox" value="" id="<%= todo._id %>">
         <label class="form-check-label ms-2" for="<%= todo._id %>" style="flex-grow: 1;" ><%= todo.todoText %></label>
-        <a href="todos/<%= todo._id %>">
+        <div class="me-1 " style="width: 20px; height: 20px;  "> <%= todo.priority %></div>
+        <a href="todos/<%= todo._id %>" class="ms-5">
           <span class="material-symbols-outlined" style="color: #b97d10;">
             edit
             </span></a>
