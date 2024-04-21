@@ -18,4 +18,11 @@ Make sure you have the following installed on your machine:
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/your-username/todo-website.git
+   git clone https://github.com/AtHaRaVs/newTodo
+
+2. npm install
+
+3. nodemon app.js
+
+![image](https://github.com/AtHaRaVs/newTodo/assets/99896281/5157a21d-b36a-4e18-82e2-a0f4d60c386e)
+
