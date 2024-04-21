@@ -52,6 +52,8 @@ app.delete("/todos/:id", async (req, res) => {
   res.redirect(`/todos`);
 });
 
+const PORT = process.env.PORT || 8000;
+
 app.listen("8000", () => {
   console.log("on port 8000✨");
 });
