@@ -46,6 +46,12 @@ app.put("/todos/:id", async (req, res) => {
   res.redirect(`/todos`);
 });
 
+app.delete("/todos/:id", async (req, res) => {
+  const { id } = req.params;
+  const todo = await Todo.findByIdAndDelete(id);
+  res.redirect(`/todos`);
+});
+
 app.listen("8000", () => {
   console.log("on port 8000✨");
 });

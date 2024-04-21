@@ -11,13 +11,16 @@
         <b>Task: </b><%= todo.todoText %>
       </p>
     </div>
+    <form action="/todos/<%= todo._id %>/?_method=DELETE" method="post">
     <div class="d-flex" style="width: 100%">
-      <a
-        href="#"
+      <button
+       
         class="btn btn-danger p-3"
         style="width: 50%; border-radius: 0"
-        >Delete</a
-      >
+
+      >Delete
+    </button>
+    </form>
       <button
         type="button"
         class="btn"
