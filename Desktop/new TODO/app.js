@@ -3,9 +3,15 @@ const app = express();
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
-const colors = require("./colours/colors");
 const mongoose = require("mongoose");
-const Todo = require("./models/todoModel");
+const session = require("express-session");
+const flash = require("connect-flash");
+const passport = require("passport");
+const localStratergy = require("passport-local");
+const User = require("./models/userModel");
+
+const todoRoute = require("./routes/todoRoutes");
+const userRoutes = require("./routes/users");
 
 async function main() {
   await mongoose.connect("mongodb://127.0.0.1:27017/Todo").then(() => {
@@ -23,34 +29,33 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
 
-app.get("/todos", async (req, res) => {
-  const todos = await Todo.find({});
-  res.render("screens/home", { todos });
+const sessionConfig = {
+  secret: "thisshouldbeabettersecret",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
+};
+
+app.use(session(sessionConfig));
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStratergy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.get("/", (req, res) => {
+  res.render("screens/home");
 });
 
-app.get("/todos/:id", async (req, res) => {
-  const { id } = req.params;
-  const todo = await Todo.findById(id);
-  res.render("screens/show", { todo });
-});
-
-app.post("/todos", async (req, res) => {
-  const newTodo = new Todo(req.body);
-  newTodo.save();
-  res.redirect("/todos");
-});
-
-app.put("/todos/:id", async (req, res) => {
-  const { id } = req.params;
-  const todo = await Todo.findByIdAndUpdate(id, req.body);
-  res.redirect(`/todos`);
-});
-
-app.delete("/todos/:id", async (req, res) => {
-  const { id } = req.params;
-  const todo = await Todo.findByIdAndDelete(id);
-  res.redirect(`/todos`);
-});
+app.use("/", userRoutes);
+app.use("/todos", todoRoute);
 
 const PORT = process.env.PORT || 8000;
 
